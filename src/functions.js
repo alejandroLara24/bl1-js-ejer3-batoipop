@@ -1,9 +1,13 @@
 'use strict'
 
 function tipoDeCombustible(id) {
-    return typesOfFuel.find(item => item.id === id).fuel
+    const item = typesOfFuel.find(item => item.id === id)
+    return item ? item.fuel : "Desconocido"
 }
 
+function getImg(file) {
+    return file ? 'media/photos/' + file : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg'
+}
 function estrellas(numero) {
     let estrellasAMostrar = ''
     if (numero !== undefined) {
@@ -23,4 +27,20 @@ function estrellas(numero) {
          '<div class="bi-star"></div>'
     }
     return estrellasAMostrar
+}
+
+function showPrice(price, discount_price) {
+    if(discount_price) {
+        return `<span class="text-muted text-decoration-line-through">${toCurrency(price)}</span>${toCurrency(discount_price)}`
+    } else {
+        return toCurrency(price)
+    }
+}
+
+function toCurrency(price) {
+    return price.toLocaleString() + ' €'
+}
+
+function showProduct(producto) {
+    return console.log(producto)
 }
